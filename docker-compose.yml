@@ -7,7 +7,7 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     ports:
-      - '127.0.0.1:3000:3000'
+      - '3000:3000'
     volumes:
       - ./conf/grafana/grafana.ini:/etc/grafana/grafana.ini
       - ./conf/grafana/dasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
@@ -23,7 +23,7 @@ services:
   prometheus-server:
     image: prom/prometheus:v2.7.1
     ports:
-      - '127.0.0.1:9090:9090'
+      - '9090:9090'
     volumes:
       - data:/prometheus
       - ./conf/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
@@ -39,7 +39,7 @@ services:
   prometheus-pushgateway:
     image: prom/pushgateway:v0.6.0
     ports:
-      - '127.0.0.1:9091:9091'
+      - '9091:9091'
     networks:
       - net
     restart: always
@@ -58,7 +58,7 @@ services:
   prometheus-alertmanager:
     image: prom/alertmanager:v0.15.3
     ports:
-    - '127.0.0.1:9093:9093'
+    - '9093:9093'
     volumes:
       - ./conf/prometheus/alertmanager.yml:/etc/config/alertmanager.yml
       - data:/alertmanager
